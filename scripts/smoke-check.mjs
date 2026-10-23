@@ -19,4 +19,7 @@ assert.ok(html.includes("lastGeneratedOutput=outputIds[action]"), "Save button t
 assert.ok(html.includes("const outputId=lastGeneratedOutput"), "Draft saving uses the latest output, not a fixed tool order");
 assert.ok(html.includes("preview.textContent="), "Saved draft previews use textContent");
 assert.ok(html.includes('confirm(copyText[lang].draftConfirm)'), "Deletion asks for confirmation");
+assert.ok(html.includes(":focus-visible"), "Keyboard focus indicator exists");
+assert.ok(html.includes("prefers-reduced-motion:reduce"), "Reduced-motion preference is respected");
+assert.ok(html.includes(".tools{grid-template-columns:minmax(0,1fr)}"), "Tools use a single-column mobile layout");
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
