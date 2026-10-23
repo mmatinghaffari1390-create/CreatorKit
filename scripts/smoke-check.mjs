@@ -15,6 +15,9 @@ for (const key of ["draftTitle:", "draftSave:", "draftLoad:", "draftDelete:"]) {
 }
 assert.ok(html.includes('localStorage.setItem(DRAFT_KEY'), "Drafts use browser-local storage");
 assert.ok(html.includes("drafts.length>=20"), "Draft count is capped");
+assert.ok(html.includes(".filter(Boolean).slice(0,5).map(t=>\"#\"+t)"), "Hashtag generation drops punctuation-only tokens before adding prefixes");
+assert.ok(html.includes("draftStorageError:\"Browser storage is unavailable."), "Draft storage failures have a clear English message");
+assert.ok(html.includes("draftStorageError:\"ذخیره‌سازی مرورگر در دسترس نیست"), "Draft storage failures have a clear Persian message");
 assert.ok(html.includes("lastGeneratedOutput=outputIds[action]"), "Save button tracks the most recent generated output");
 const draftKeyPosition = html.indexOf('const DRAFT_KEY="creatorkit-draft-library-v1"');
 const initialRenderPosition = html.indexOf("});renderDrafts();document.querySelectorAll(\"[data-copy]\")");
