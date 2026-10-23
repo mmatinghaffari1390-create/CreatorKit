@@ -28,6 +28,7 @@ assert.ok(html.includes("let copied=false"), "Clipboard fallback checks whether 
 assert.ok(html.includes('copyFailed:"Copy failed.'), "Clipboard failures have a clear English message");
 assert.ok(html.includes('copyFailed:"کپی خودکار ممکن نشد'), "Clipboard failures have a clear Persian message");
 assert.ok(html.includes("if(!out){draftStatus(\"draftLoadError\");return}"), "Draft loading rejects invalid output targets");
+assert.ok(html.includes('["titlesOut","hashtagsOut","ideasOut","plannerOut","descriptionOut","hooksOut","outlineOut","scriptOut"].includes(x.output)'), "Saved drafts only target known tool output elements");
 assert.ok(html.includes("lastGeneratedOutput=d.output"), "Loading a draft restores the active output target");
 assert.ok(html.includes("draftLoaded:\"Draft loaded."), "Successful draft loading has clear English feedback");
 assert.ok(html.includes("draftLoadError:\"این پیش‌نویس"), "Invalid draft loading has clear Persian feedback");
