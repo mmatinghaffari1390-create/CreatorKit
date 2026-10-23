@@ -24,6 +24,9 @@ const initialRenderPosition = html.indexOf("});renderDrafts();document.querySele
 assert.ok(draftKeyPosition >= 0 && initialRenderPosition > draftKeyPosition, "Initial draft rendering happens after draft storage initialization");
 assert.ok(html.includes("const outputId=lastGeneratedOutput"), "Draft saving uses the latest output, not a fixed tool order");
 assert.ok(html.includes("preview.textContent="), "Saved draft previews use textContent");
+assert.ok(html.includes("let copied=false"), "Clipboard fallback checks whether copying succeeded");
+assert.ok(html.includes("copyFailed:\\"Copy failed."), "Clipboard failures have a clear English message");
+assert.ok(html.includes("copyFailed:\\"کپی خودکار ممکن نشد"), "Clipboard failures have a clear Persian message");
 assert.ok(html.includes("if(!out){draftStatus(\"draftLoadError\");return}"), "Draft loading rejects invalid output targets");
 assert.ok(html.includes("lastGeneratedOutput=d.output"), "Loading a draft restores the active output target");
 assert.ok(html.includes("draftLoaded:\"Draft loaded."), "Successful draft loading has clear English feedback");
