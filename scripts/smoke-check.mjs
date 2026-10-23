@@ -24,6 +24,10 @@ const initialRenderPosition = html.indexOf("});renderDrafts();document.querySele
 assert.ok(draftKeyPosition >= 0 && initialRenderPosition > draftKeyPosition, "Initial draft rendering happens after draft storage initialization");
 assert.ok(html.includes("const outputId=lastGeneratedOutput"), "Draft saving uses the latest output, not a fixed tool order");
 assert.ok(html.includes("preview.textContent="), "Saved draft previews use textContent");
+assert.ok(html.includes("if(!out){draftStatus(\"draftLoadError\");return}"), "Draft loading rejects invalid output targets");
+assert.ok(html.includes("lastGeneratedOutput=d.output"), "Loading a draft restores the active output target");
+assert.ok(html.includes("draftLoaded:\"Draft loaded."), "Successful draft loading has clear English feedback");
+assert.ok(html.includes("draftLoadError:\"این پیش‌نویس"), "Invalid draft loading has clear Persian feedback");
 assert.ok(html.includes('confirm(copyText[lang].draftConfirm)'), "Deletion asks for confirmation");
 assert.ok(html.includes(":focus-visible"), "Keyboard focus indicator exists");
 assert.ok(html.includes("class=\"skip-link\" href=\"#main-content\""), "Keyboard users can skip directly to main content");
