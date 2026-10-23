@@ -55,4 +55,18 @@ assert.ok(html.includes('el.setAttribute("readonly","")'), "Clipboard fallback u
 assert.ok(html.includes('class="button-link" href="#tools" data-i="explore"'), "Hero navigation uses a direct accessible link");
 assert.ok(!/<a[^>]*>\s*<button\b/i.test(html), "Links do not nest interactive buttons");
 
+
+const actions = [...html.matchAll(/data-action="([^"]+)"/g)].map(m => m[1]);
+assert.deepEqual([...new Set(actions)].sort(), ["description","hashtags","hooks","ideas","outline","planner","script","titles"].sort(), "All eight expected generator actions are present");
+for (const action of actions) {
+  assert.ok(html.includes(`document.getElementById(outputIds[action]).textContent=out`), `Action ${action} renders generated content as text`);
+}
+const translationKeys = [...html.matchAll(/data-i="([^"]+)"/g)].map(m => m[1]);
+for (const key of translationKeys) {
+  assert.ok(html.includes(`${key}:`), `A translation entry exists for visible key: ${key}`);
+}
+assert.ok(html.includes('document.documentElement.lang=lang'), "Language switch updates document language for assistive technology");
+assert.ok(html.includes('list.replaceChildren()'), "Draft list is cleared safely before rerendering");
+assert.ok(!/\.innerHTML\s*=\s*(?:out|d\.|output|topic|t\b)/.test(scripts.join("\\n")), "User-generated tool and draft content is not assigned to innerHTML");
+
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
