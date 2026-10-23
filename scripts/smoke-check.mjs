@@ -52,4 +52,7 @@ assert.ok(html.includes("title.textContent=d.name") && html.includes("preview.te
 assert.ok(html.includes("name:name.slice(0,60)"), "Saved draft names are length-limited");
 assert.ok(html.includes('el.setAttribute("readonly","")'), "Clipboard fallback uses a read-only temporary field");
 
+assert.ok(html.includes('class="button-link" href="#tools" data-i="explore"'), "Hero navigation uses a direct accessible link");
+assert.ok(!/<a[^>]*>\s*<button\b/i.test(html), "Links do not nest interactive buttons");
+
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
