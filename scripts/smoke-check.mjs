@@ -46,4 +46,5 @@ assert.ok(html.includes('id="lang"'), "Language switch control exists");
 assert.ok(html.includes('document.documentElement.dir=lang==="fa"?"rtl":"ltr"'), "Language switch updates page direction");
 assert.ok(html.includes('const outputIds={script:"scriptOut",titles:"titlesOut",hashtags:"hashtagsOut",ideas:"ideasOut",planner:"plannerOut",description:"descriptionOut",hooks:"hooksOut",outline:"outlineOut"}'), "Every generator action maps to a known output target");
 assert.ok(!/fetch\s*\(|XMLHttpRequest|WebSocket/.test(scripts.join("\n")), "Static tools do not make unconfigured network requests");
-\nconsole.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
+
+console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
