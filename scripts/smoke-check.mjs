@@ -23,6 +23,10 @@ assert.ok(html.includes("const outputId=lastGeneratedOutput"), "Draft saving use
 assert.ok(html.includes("preview.textContent="), "Saved draft previews use textContent");
 assert.ok(html.includes('confirm(copyText[lang].draftConfirm)'), "Deletion asks for confirmation");
 assert.ok(html.includes(":focus-visible"), "Keyboard focus indicator exists");
+assert.ok(html.includes("class=\"skip-link\" href=\"#main-content\""), "Keyboard users can skip directly to main content");
+assert.ok(html.includes("<main id=\"main-content\" tabindex=\"-1\">"), "Main content landmark can receive programmatic focus");
+assert.ok(html.includes("property=\"og:title\"") && html.includes("name=\"twitter:card\""), "Social sharing preview metadata exists");
+assert.ok(html.includes("skip:\"Skip to main content\""), "Skip-link label is translated to English");
 assert.ok(html.includes("prefers-reduced-motion:reduce"), "Reduced-motion preference is respected");
 assert.ok(html.includes(".tools{grid-template-columns:minmax(0,1fr)}"), "Tools use a single-column mobile layout");
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
