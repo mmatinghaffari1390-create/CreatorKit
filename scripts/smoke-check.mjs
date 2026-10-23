@@ -40,4 +40,10 @@ assert.ok(html.includes("property=\"og:title\"") && html.includes("name=\"twitte
 assert.ok(html.includes("skip:\"Skip to main content\""), "Skip-link label is translated to English");
 assert.ok(html.includes("prefers-reduced-motion:reduce"), "Reduced-motion preference is respected");
 assert.ok(html.includes(".tools{grid-template-columns:minmax(0,1fr)}"), "Tools use a single-column mobile layout");
-console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
+
+assert.ok(html.includes('aria-live="polite"'), "Generated results and status messages are announced to assistive technology");
+assert.ok(html.includes('id="lang"'), "Language switch control exists");
+assert.ok(html.includes('document.documentElement.dir=lang==="fa"?"rtl":"ltr"'), "Language switch updates page direction");
+assert.ok(html.includes('const outputIds={script:"scriptOut",titles:"titlesOut",hashtags:"hashtagsOut",ideas:"ideasOut",planner:"plannerOut",description:"descriptionOut",hooks:"hooksOut",outline:"outlineOut"}'), "Every generator action maps to a known output target");
+assert.ok(!/fetch\s*\(|XMLHttpRequest|WebSocket/.test(scripts.join("\n")), "Static tools do not make unconfigured network requests");
+\nconsole.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
