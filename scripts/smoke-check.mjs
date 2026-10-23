@@ -47,4 +47,9 @@ assert.ok(html.includes('document.documentElement.dir=lang==="fa"?"rtl":"ltr"'),
 assert.ok(html.includes('const outputIds={script:"scriptOut",titles:"titlesOut",hashtags:"hashtagsOut",ideas:"ideasOut",planner:"plannerOut",description:"descriptionOut",hooks:"hooksOut",outline:"outlineOut"}'), "Every generator action maps to a known output target");
 assert.ok(!/fetch\s*\(|XMLHttpRequest|WebSocket/.test(scripts.join("\n")), "Static tools do not make unconfigured network requests");
 
+assert.ok(html.includes("document.getElementById(outputIds[action]).textContent=out"), "Generated content is rendered as text, not parsed as HTML");
+assert.ok(html.includes("title.textContent=d.name") && html.includes("preview.textContent=d.content.slice(0,180)"), "Draft names and previews are rendered safely as text");
+assert.ok(html.includes("name:name.slice(0,60)"), "Saved draft names are length-limited");
+assert.ok(html.includes('el.setAttribute("readonly","")'), "Clipboard fallback uses a read-only temporary field");
+
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
