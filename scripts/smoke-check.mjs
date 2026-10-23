@@ -15,6 +15,8 @@ for (const key of ["draftTitle:", "draftSave:", "draftLoad:", "draftDelete:"]) {
 }
 assert.ok(html.includes('localStorage.setItem(DRAFT_KEY'), "Drafts use browser-local storage");
 assert.ok(html.includes("drafts.length>=20"), "Draft count is capped");
+assert.ok(html.includes("lastGeneratedOutput=outputIds[action]"), "Save button tracks the most recent generated output");
+assert.ok(html.includes("const outputId=lastGeneratedOutput"), "Draft saving uses the latest output, not a fixed tool order");
 assert.ok(html.includes("preview.textContent="), "Saved draft previews use textContent");
 assert.ok(html.includes('confirm(copyText[lang].draftConfirm)'), "Deletion asks for confirmation");
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
