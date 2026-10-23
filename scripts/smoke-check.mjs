@@ -74,10 +74,10 @@ const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(ids.length, new Set(ids).size, "HTML ids are unique");
 const idSet = new Set(ids);
 for (const [, target] of html.matchAll(/\bhref="#([^"]+)"/g)) {
-  assert.ok(idSet.has(target), \`In-page link target exists: #\${target}\`);
+  assert.ok(idSet.has(target), "In-page link target exists: #" + target);
 }
 for (const id of ["titlesOut", "hashtagsOut", "ideasOut", "plannerOut", "descriptionOut", "hooksOut", "outlineOut", "scriptOut"]) {
-  assert.ok(idSet.has(id), \`Generator output target exists: \${id}\`);
+  assert.ok(idSet.has(id), "Generator output target exists: " + id);
 }
 assert.ok(/<label\b/i.test(html) || /aria-label=["']/i.test(html), "Form controls have visible or explicit accessible labels");
 assert.ok(html.includes('name="description"'), "Search description metadata exists");
