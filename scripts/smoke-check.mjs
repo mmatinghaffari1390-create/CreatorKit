@@ -3,7 +3,7 @@ import vm from "node:vm";
 import assert from "node:assert/strict";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-const scripts = [...html.matchAll(/<script>([\\s\\S]*?)<\\/script>/gi)].map(m => m[1]);
+const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map(m => m[1]);
 assert.ok(scripts.length > 0, "Inline application script exists");
 for (const [i, source] of scripts.entries()) new vm.Script(source, { filename: `index.html:inline-script-${i + 1}` });
 
