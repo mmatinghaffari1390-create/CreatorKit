@@ -70,16 +70,16 @@ assert.ok(html.includes('list.replaceChildren()'), "Draft list is cleared safely
 assert.ok(!/\.innerHTML\s*=\s*(?:out|d\.|output|topic|t\b)/.test(scripts.join("\\n")), "User-generated tool and draft content is not assigned to innerHTML");
 
 
-const ids = [...html.matchAll(/\\bid="([^"]+)"/g)].map(m => m[1]);
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
 assert.equal(ids.length, new Set(ids).size, "HTML ids are unique");
 const idSet = new Set(ids);
-for (const [, target] of html.matchAll(/\\bhref="#([^"]+)"/g)) {
-  assert.ok(idSet.has(target), `In-page link target exists: #${target}`);
+for (const [, target] of html.matchAll(/\bhref="#([^"]+)"/g)) {
+  assert.ok(idSet.has(target), \`In-page link target exists: #\${target}\`);
 }
 for (const id of ["titlesOut", "hashtagsOut", "ideasOut", "plannerOut", "descriptionOut", "hooksOut", "outlineOut", "scriptOut"]) {
-  assert.ok(idSet.has(id), `Generator output target exists: ${id}`);
+  assert.ok(idSet.has(id), \`Generator output target exists: \${id}\`);
 }
-assert.ok(/<label\\b/i.test(html) || /aria-label=["\']/i.test(html), "Form controls have visible or explicit accessible labels");
+assert.ok(/<label\b/i.test(html) || /aria-label=["']/i.test(html), "Form controls have visible or explicit accessible labels");
 assert.ok(html.includes('name="description"'), "Search description metadata exists");
 
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
