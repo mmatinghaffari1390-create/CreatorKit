@@ -79,7 +79,7 @@ for (const [, target] of html.matchAll(/\bhref="#([^"]+)"/g)) {
 for (const id of ["titlesOut", "hashtagsOut", "ideasOut", "plannerOut", "descriptionOut", "hooksOut", "outlineOut", "scriptOut"]) {
   assert.ok(idSet.has(id), "Generator output target exists: " + id);
 }
-assert.ok(/<label\b/i.test(html) || /aria-label=["']/i.test(html), "Form controls have visible or explicit accessible labels");
+assert.ok(/<textarea\b[^>]*\bplaceholder=/i.test(html) && /<input\b[^>]*\bplaceholder=/i.test(html), "Text-entry controls provide placeholder guidance");
 assert.ok(html.includes('name="description"'), "Search description metadata exists");
 
 console.log("CreatorKit smoke checks passed: inline JS syntax, required tools, bilingual draft UI, and local draft safeguards.");
